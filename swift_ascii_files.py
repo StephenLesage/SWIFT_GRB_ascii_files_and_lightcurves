@@ -20,12 +20,6 @@ for x in range(len(SWIFTfiles)):
 	# gathering data from fits files
 	lc_fits_data = lc_fits[1].data
 
-	# used to see how data was structured
-	# lc_fits_data.view()
-	# print lc_fits_data[0]
-	# print lc_fits_data[0][1]
-	# print lc_fits_data[0][1][0]
-
 	# creating empty arrays
 	time=[]
 	ch1=[]
@@ -60,11 +54,7 @@ for x in range(len(SWIFTfiles)):
 		ch4_unc.append(lc_fits_data[i][2][3])
 		ch1234_unc.append(math.sqrt((((lc_fits_data[i][2][0])**2)+((lc_fits_data[i][2][1])**2)+((lc_fits_data[i][2][2])**2)+((lc_fits_data[i][2][3])**2))))	
 
-	# stacking lightcurve data arrays and turning them into columns
-	data=np.array([time,ch1,ch1_unc,ch2,ch2_unc,ch3,ch3_unc,ch4,ch4_unc,ch1234,ch1234_unc])
-	data=data.T	
-
-	# getting GRB number for plots based on fits file title
+	# getting GRB number and trigger time for plots based on fits file title
 	# strip fits file name down to the trigger id
 	SWIFTfiles[x]=SWIFTfiles[x].replace('b_4chan_64ms.lc','')
 	SWIFTfiles[x]=SWIFTfiles[x].replace('sw','')
@@ -78,12 +68,23 @@ for x in range(len(SWIFTfiles)):
 		        numbers_str[1].strip()
 		        if numbers_str[1] == SWIFTfiles[x]:
 		        	GRB_number = numbers_str[0]
+		        	trigger_time = float(numbers_str[2].strip())
+
+	# adjusting time from "trigger time in BAT MET" to "time since trigger"
+	time_since_trigger=[]
+	for element in time:
+		time_val=element-trigger_time
+		time_since_trigger.append(time_val)
+
+	# stacking lightcurve data arrays and turning them into columns
+	data=np.array([time_since_trigger,ch1,ch1_unc,ch2,ch2_unc,ch3,ch3_unc,ch4,ch4_unc,ch1234,ch1234_unc])
+	data=data.T	
 
 	# saving the data as a ascii text file
 	np.savetxt('ascii_files/'+GRB_number+"_ascii.txt",data)	
 
 	# displays lightcurves if desired
-	plt.errorbar(time,ch1234,yerr=ch1234_unc) # plt.plot(time,ch1234) #can change it if you dont want error bars
+	plt.errorbar(time_since_trigger,ch1234,yerr=ch1234_unc) # plt.plot(time,ch1234) #can change it if you dont want error bars
 	plt.title('SWIFT '+GRB_number+' ch1+2+3+4')
 	plt.xlabel('time (s)')
 	plt.ylabel('ch1+2+3+4 (counts/s)')

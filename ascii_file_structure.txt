@@ -1,0 +1,1 @@
+time,  ch1(15-25 keV), ch1_unc,  ch2(25-50 keV),  ch2_unc,  ch3(50-100 keV),  ch3_unc,  ch4(100-350 keV),  ch4_unc,  ch1234(15-350 keV),  ch1234_unc 
