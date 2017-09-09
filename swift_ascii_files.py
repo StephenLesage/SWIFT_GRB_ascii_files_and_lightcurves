@@ -58,7 +58,6 @@ for x in range(len(SWIFTfiles)):
 	# strip fits file name down to the trigger id
 	SWIFTfiles[x]=SWIFTfiles[x].replace('b_4chan_64ms.lc','')
 	SWIFTfiles[x]=SWIFTfiles[x].replace('sw','')
-
 	# open text file of grb names and trigger ids
 	GRB_number=''
 	# compare stripped fits file name to names in tet file to find corresponding grb name
