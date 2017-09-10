@@ -80,14 +80,16 @@ for x in range(len(SWIFTfiles)):
 	data=data.T	
 
 	# saving the data as a ascii text file
+	print "creating ascii file for "+GRB_number
 	np.savetxt('ascii_files/'+GRB_number+"_ascii.txt",data)	
 
-	# displays lightcurves if desired
-	plt.errorbar(time_since_trigger,ch1234,yerr=ch1234_unc) # plt.plot(time,ch1234) #can change it if you dont want error bars
-	plt.title('SWIFT '+GRB_number+' ch1+2+3+4')
-	plt.xlabel('time (s)')
-	plt.ylabel('ch1+2+3+4 (counts/s)')
-	GRB_lightcurve=plt.gcf()
-	plt.show()
-	# saves ightcurves if desired
-	GRB_lightcurve.savefig('lightcurves/'+GRB_number+'_ch1+2+3+4_lightcurve.jpeg')
+	# # displays lightcurves if desired
+	# plt.errorbar(time_since_trigger,ch1234,yerr=ch1234_unc) # plt.plot(time,ch1234) #can change it if you dont want error bars
+	# plt.title('SWIFT '+GRB_number+' ch1+2+3+4')
+	# plt.xlabel('time (s)')
+	# plt.ylabel('ch1+2+3+4 (counts/s)')
+	# GRB_lightcurve=plt.gcf()
+	# plt.show()
+	# # saves ightcurves if desired
+	# GRB_lightcurve.savefig('lightcurves/'+GRB_number+'_ch1+2+3+4_lightcurve.jpeg')
+	
