@@ -1,7 +1,7 @@
 import urllib
 
 # reading through list of list of grb triggers to loop through them in the url later
-with open("swift_grbtrigger_and_burstid.txt") as f:
+with open("general_summary.txt") as f:
 	for line in f: #line is a string
 		numbers_str = line.split() #split the string on whitespace, return a list of numbers (as strings)
 		grb_name=numbers_str[0].strip()
