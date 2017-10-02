@@ -86,7 +86,7 @@ for i in range(len(SWIFT_ascii_files)):
 	# plt.ylabel('ch1+2+3+4 (counts/s)')
 	# GRB_lightcurve=plt.gcf()
 	# # plt.show()
-	# GRB_lightcurve.savefig('lightcurves/'+GRB_number+'_ch1+2+3+4_lightcurve.jpeg')
+	# GRB_lightcurve.savefig('burst_lightcurves/'+GRB_number+'_ch1+2+3+4_lightcurve.jpeg')
 	# plt.clf()
 	# print GRB_number
 
