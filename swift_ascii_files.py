@@ -61,8 +61,8 @@ for x in range(len(SWIFTfiles)):
 	# open text file of grb names and trigger ids
 	GRB_number=''
 	# compare stripped fits file name to names in tet file to find corresponding grb name
-	with open("swift_grbtrigger_and_burstid.txt") as f:
-		    for line in f: #Line is a string
+	with open("general_summary.txt") as f:
+		    for line in f: #line is a string
 		        numbers_str = line.split() #split the string on whitespace, return a list of numbers (as strings)
 		        numbers_str[1].strip()
 		        if numbers_str[1] == SWIFTfiles[x]:
